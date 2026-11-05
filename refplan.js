@@ -600,8 +600,7 @@ export async function unpackModel(s) {
    copy whose "version" differs from the built-in file's was made from an
    older drawing of the plan: it is discarded (same version: kept) */
 export async function loadModel(defaultUrl, storeKey) {
-  const hash = location.hash.match(/[#&]m=([^&]+)/);
-  if (hash) { try { return { model: await unpackModel(hash[1]), from: 'link' }; } catch (e) { console.warn('bad #m', e); } }
+  /* v44: share links (#m=) are no longer read (the plan editor is gone) */
   let orig = null;
   try { const r = await fetch(defaultUrl); if (r.ok) orig = await r.json(); } catch (e) { console.warn('fetch', defaultUrl, e); }
   const q = new URLSearchParams(location.search);
